@@ -13,14 +13,14 @@ public final class StringDuplicateDeleter extends DuplicateDeleter<String> {
 
     @Override
     public String[] removeDuplicates(int maxNumberOfDuplications) {
-        return new String[0];
+        return Arrays.stream(array).filter(l -> getOccurence(l) < maxNumberOfDuplications).toArray(String[]:: new);
     }
 
     @Override
     public String[] removeDuplicatesExactly(int exactNumberOfDuplications) {
-        return new String[0];
+        return Arrays.stream(array).filter(t -> getOccurence(t) != exactNumberOfDuplications).toArray(String[]:: new);
     }
-    public Long getOccurence (Integer o){
+    public Long getOccurence (String o){
         return Arrays.stream(array).filter(z -> z.equals(o)).count();
     }
 }
